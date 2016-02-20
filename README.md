@@ -1,4 +1,4 @@
 # crime-stats-demystifed
-crime numbers per geographic districts
+calculating crime numbers per geographical districts
 
 Fiona + Shapely + Geopandas
