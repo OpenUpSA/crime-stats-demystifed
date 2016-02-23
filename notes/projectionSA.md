@@ -18,7 +18,7 @@ commonly known as WGS84, with the International Terrestrial Reference Frame
 ##PROJECTIONS
 In brief:
 
->Default/optimal projections used in SA use the Transverse Mercator
+>Default/optimal projections in SA use the Transverse Mercator
 >Projection referred to as e.g. "Hartebeesthoek94 Lo15", where the "Lo15" indicates
 >the zone name (named after the value of its origin, similarly to UTM Zones).
 
