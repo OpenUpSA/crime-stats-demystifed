@@ -1,28 +1,30 @@
 # General intro for SA cartographic/geo- systems
 ##DATUM
-There are two principal datums used in South Africa: Cape (obsolete)
-and Hartebeesthoek94 (current).
+There are two principal datums used in South Africa:
+1. Cape (obsolete)
+2. Hartebeesthoek94 (current).
 
-The Cape datum is the older of the two is no longer used. This references
+The Cape datum is the older of the two and no longer in use. It references
 the Clarke 1880 ellipsoid and was developed by Sir Thomas Maclear and
-Sir David Gill in the late 19th - early 20th Century and had its orgin
+Sir David Gill in the late 19th - early 20th Century with its orgin
 at Buffelsfontein, Port Elizabeth.
+
 Since 01/01/1999 the official coordinate system for South Africa
-is the Hartebeesthoek94 geodetic datum,
-The Hartebeesthoek 1994 is based on the World Geodetic System 1984 ellipsoid,
+is the Hartebeesthoek94 geodetic datum: based on the World Geodetic System 1984 ellipsoid,
 commonly known as WGS84, with the International Terrestrial Reference Frame
 1991 coordinates of the Hartebeesthoek Radio Astronomy Observatory Telescope
 (west of Johannesburg near the Cradle of Humankind) used as the origin of this system.
 
 ##PROJECTIONS
-The common projections seen in South Africa use the Transverse Mercator
-Projection and can bee seen in some software as "Hartebeesthoek94 Lo15"
-where the "Lo15" indicates the zone name (named after the value of its origin,
-similarly to UTM Zones).
+In brief:
+
+>Default/optimal projections used in SA use the Transverse Mercator
+>Projection referred to as e.g. "Hartebeesthoek94 Lo15", where the "Lo15" indicates
+>the zone name (named after the value of its origin, similarly to UTM Zones).
 
 In more detail:
 A variation of the UTM projection that defines the national coordinate systemus
- in SA is called the “Gauss Conformal Projection” (aka form of Gauss–Krüger or transverse
+in SA is called the “Gauss Conformal Projection” (aka form of Gauss–Krüger or transverse
 Mercator, TM, EPSG projection 2047,
 https://en.wikipedia.org/wiki/Transverse_Mercator_projection)
 This modification of the Mercator projection is used for the computation
