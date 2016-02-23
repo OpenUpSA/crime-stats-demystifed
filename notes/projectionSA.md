@@ -51,24 +51,26 @@ These coordinate zones were Lo17, Lo19, Lo21 etc in Cape Datum
 (Haartebeeshoek 1994 datum).
 
 E.g.
-The coordinate zone in use in the Durban area is Wg31 because as longitude 31°
-east runs directly through the city. Cape Town is Wg17-Wg18
+The coordinate zone in use in the Durban area is Wg31 as the longitude 31°
+east runs directly through the city. Cape Town is Wg17-Wg18.
 
-A list of coordinate systems for South Africa can be found here:
-http://epsg.io/?q=south%20africa
+## Resources and info:
+A list of coordinate systems for South Africa (useful for changing coordinates):
+- http://epsg.io/?q=south%20africa
+- http://spatialreference.org/ref/epsg/2047/
+
 Other useful ref links:
-http://www.spatialreference.co.za/Maps.asp
-http://spatialreference.org/ref/epsg/2047/
+- http://www.spatialreference.co.za/Maps.asp
 
-Quick & dirty projection finder for projection second-guessing:
-http://projfinder.com/
+Quick & dirty projection finder for projection second-guessing (when no .prj info is given):
+- http://projfinder.com/
 
 SA boundaries:
-http://geoportal.rcmrd.org/layers/?limit=100&offset=0&regions__name__in=South%20Africa
+- http://geoportal.rcmrd.org/layers/?limit=100&offset=0&regions__name__in=South%20Africa
 e.g. provinces:
 http://geoportal.rcmrd.org/layers/servir%3Asouth_africa_adm2
 
-Definition of projection parameters for Python proj PROJ4 wrapper:
+Definition of projection parameters for Python proj (PROJ4 wrapper):
 http://proj.maptools.org/gen_parms.html
 
 
