@@ -1,4 +1,11 @@
 # General intro for SA cartographic/geo- systems
+
+Shapes and information displayed on maps are a result of transforming the measurements 
+performed on Earth's surface through a composition of functions:
+choice and representation and a spheroid (datum) + projection on geographic, geodesic/ planar/other coordinates.
+Depending on the location of the analysis and it purpose, that transformation
+has different definitions.
+
 ##DATUM
 There are two principal datums used in South Africa:
 1. Cape (obsolete)
