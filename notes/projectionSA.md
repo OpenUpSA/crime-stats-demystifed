@@ -1,13 +1,13 @@
 # General intro for SA cartographic/geo- systems
 
-Shapes and information displayed on maps are a result of transforming the measurements 
+Shapes and information displayed on maps are a result of transforming the measurements
 performed on Earth's surface through a composition of functions:
-choice and representation and a spheroid (datum) + projection on geographic, geodesic/ planar/other coordinates.
-Depending on the location of the analysis and it purpose, that transformation
-has different definitions.
+choice,representation of a spheroid (datum) + projection on geographic/geodesic/planar coordinates.
+Depending on the location of the analysis and it purpose, the definitions of the above.
 
 ##DATUM
 There are two principal datums used in South Africa:
+
 1. Cape (obsolete)
 2. Hartebeesthoek94 (current).
 
@@ -23,23 +23,18 @@ commonly known as WGS84, with the International Terrestrial Reference Frame
 (west of Johannesburg near the Cradle of Humankind) used as the origin of this system.
 
 ##PROJECTIONS
-In brief:
+Default/optimal projections in SA use the Transverse Mercator
+Projection referred to as e.g. "Hartebeesthoek94 Lo15", where the "Lo15" indicates
+the zone name (named after the value of its origin, similarly to UTM Zones).
 
->Default/optimal projections in SA use the Transverse Mercator
->Projection referred to as e.g. "Hartebeesthoek94 Lo15", where the "Lo15" indicates
->the zone name (named after the value of its origin, similarly to UTM Zones).
-
-In more detail:
-A variation of the UTM projection that defines the national coordinate systemus
-in SA is called the “Gauss Conformal Projection” (aka form of Gauss–Krüger or transverse
-Mercator, TM, EPSG projection 2047,
-https://en.wikipedia.org/wiki/Transverse_Mercator_projection)
-This modification of the Mercator projection is used for the computation
-of the plane YLo and XLo co-ordinates, commonly known as the "Lo. co-ordinate system".
+It is a variation of the UTM projection that defines the national coordinate system
+in SA called “Gauss Conformal Projection” (form of Gauss–Krüger, EPSG projection 2047).
+It is used for the computation of the plane YLo and XLo co-ordinates, commonly known as the "Lo. co-ordinate system".
 The equator will project as a straight line, at right angles to the central meridian (Lo.),
 but all other meridians and parallels will project as curved lines.
 The principles of the projection are the same as the UTM with a difference that
-each zone is only 2° wide (as opposed to 6° in the standard UM).
+each zone is only 2° wide (as opposed to 6° in the standard UM, this less distortion
+and no scale factor). 
 Only the area within one degree of longitude on either side of the central
 meridian is projected. The width of each segment (belt) is thus two degrees
 of longitude and is referred to the central meridian (CM) of that belt.
@@ -48,9 +43,7 @@ of longitude and is referred to the central meridian (CM) of that belt.
 increasing from the equator (where X = 0m) towards the South Pole.
 - Y (Westings) coordinates are measured from the CM of the respective zone,
 increasing from the CM (where Y=0) in a westerly direction.
-Y is +ve west of the CM and -ve east of the CM.
 
-There is less distortion and no scale factor is required.
 Longitudes 17°East, 19°East, 21°East, 23°East, 25°East, 27°East, 29°East,
 31°East and 33°East are used as the mid-points of each 2° projection.
 These coordinate zones were Lo17, Lo19, Lo21 etc in Cape Datum
