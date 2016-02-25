@@ -232,8 +232,9 @@ Next, we used AEA to project the data on a planar surface maintaing the relative
 ####Other useful ref links:
 - http://www.spatialreference.co.za/Maps.asp
 
-####Quick & dirty projection finder for projection second-guessing (when no .prj info is given):
+####Quick projection & EPSG code finders:
 - http://projfinder.com/
+- http://www.prj2epsg.org/epsg/4326
 
 ####SA boundaries:
 - http://geoportal.rcmrd.org/layers/?limit=100&offset=0&regions__name__in=South%20Africa
