@@ -10,3 +10,6 @@ ogr2ogr -t_srs '+proj=aea +lat_1=20 +lat_2=-23 +lat_0=0 +lon_0=25 +x_0=0 +y_0=0 
 
 # police precincts only on the surface
 ogr2ogr -s_srs EPSG:4326 -t_srs '+proj=aea +lat_1=20 +lat_2=-23 +lat_0=0 +lon_0=25 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs' shapefiles/updated/polPrec_murd2015_prov_aea.shp shapefiles/updated/polPrec_murd2015_prov/polPrec_murd2015_prov.shp
+
+#wards 2011
+ogr2ogr -s_srs EPSG:4326 -t_srs '+proj=aea +lat_1=20 +lat_2=-23 +lat_0=0 +lon_0=25 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs' Wards2011_aea.shp Wards2011.shp
