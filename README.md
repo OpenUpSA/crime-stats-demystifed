@@ -27,43 +27,50 @@ In brief, we took the geographical boundaries of the police districts, for which
 data is available, and the Census boundaries with the population data, overlayed the two
 and created smaller intersecting regions, for which both crime and population can be estimated.
 Such intersecting areas with all the relevant information can then be aggregated
-to form larger area units andd can be used to construct a Small Area with a particular location of interest, a neighborhood or a city. The corresponding estimates are just the sums of
+to form larger area units and can be used to construct a Small Area with a particular location of interest, a neighborhood or a city. The corresponding estimates are just the sums of
 the pieces of information we used in the process. Easy.
 
-There is an underlying assumption for this idea to make sense. That is,
-we assume that the population data is evenly distributed across the census regions.
-What that means is that whatever region of SA included in the census we decide to look at, there is equal probability of people living in any part of it. Such assumption will clearly
+There are a few things to keep in mind:
+- Inherent in this approach is an assumption that the population data is evenly distributed across the census regions. What that in essence means is that whatever region included in the census we decide to look at, there is an equal probability of people living in any part of it. Such assumption will clearly
 have less chances to hold if the area is large as the chances of it containing for example
-large uninhabited stretches of land (lake, highway) is high.
-
-Therefore, we specifically used the lowest level geo-unit for which the population data is available
+large uninhabited stretches of land (lake, highway) is high. Therefore, we specifically used the lowest level geo-unit for which the population data is available
 -- the Small Areas (SAL). In 2013 Census data there were 84,907 SALs, which hold between 11
 and 11,717 people count. As mentioned, all other populated areas are formed by
-aggregation. Every SAL with its a unique identifier contains a count of all people living in it, split by gender. It is those identifiers that allow us to bind the population data to a geographic area on a map. 
+aggregation. Every SAL with its a unique identifier contains a count of all people living in it, split by gender. It is those identifiers that allow us to bind the population data to a geographic area on a map.
 
-Geographic data was released in a common geo-format, the so-called shapefile,
+- We are comparing geographic areas, calculate ratios, inclusions and slice things up,
+and for all of it to make sense we need to make sure that:
+   1. all data is in the same coordinate system, and
+   2. whatever system we work in, the ratio of different areas is maintained, as
+   if we would perform the calculations on the surface of the Earth.
+
+   Geographic data was released in a common geo-format, the so-called shapefile,
 developed by ESRI and describing spatial vector features. Every shapefile has spatial definition
 of its coordinate system. In order to work with both police and population
-boundaries, the data needs to be referenced with respect to a planar surface by means of projection
-that maintains the ratio of areas. We use Africa Albers Equal Area Conic (AEA) see *notes/*
-for more details on the topic.
+boundaries and make calculations based on areas (as we do), the data needs to be referenced with respect to a planar surface by means of an equal-area projection. We use the Africa Albers Equal Area Conic (AEA).
+See *notes/* for details on the SA spatial standards and projections and *scripts/* for how the data
+was processed.
+
+
+Finally, the maths of it.
+For each police precinct,
 
 
 
 
-### Basic stack:
+### Stack:
  - Fiona (Python interface to OGR)
  - Shapely (analyzing and manipulating planar geometric objects)
  - Geopandas (heavy lifting of data analysis)
  - gdal command line tools
-
+ - pen and paper
 
 
 
 ```sh
 $...
 ```
-## Data
+### Data
 National population data is available at various levels of granularity available
 from the SA 2013 Census. The Crime Statistics and Police precincts are available from the [open data portal].
 The results sit in the *data* folder.
@@ -90,5 +97,3 @@ License
 
    [open data portal]: <http://data.code4sa.org/>
    [Wazimap]: <http://wazimap.co.za/>
-
-*see notes/ for details on the SA spatial standards and projections*
