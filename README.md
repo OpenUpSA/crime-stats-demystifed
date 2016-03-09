@@ -54,7 +54,8 @@ Hereon, we assume that the data is prepped as outlined above and we focus on a p
 type of crime.
 
 
-For a given crime type the analysis is two-fold:
+The analysis has two steps:
+
 1. First, we estimate the crime rate per person for each of the police precincts.
    As an example, let us choose a precinct P (the analysis is preformed for all).
    The rate estimate becomes: number of crimes in P/number of people in P.
@@ -67,6 +68,7 @@ For a given crime type the analysis is two-fold:
      SAL area is included within P. For example, if a given SAL with 100 people living
      in it intersects P with in 50%, the population of the intersection would be 0.5*100 = 50
     - summing up the populations from the intersections of P, we get the estimate we are after.
+    
 2. Given the crime rate per person in P and the population data in all intersections,
    the expected number of crimes in a SAL is a calculated by multiplying the number of people
    in a given intersection by the rate of P the intersection is contained in,
