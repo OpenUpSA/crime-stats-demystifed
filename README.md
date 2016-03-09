@@ -1,40 +1,76 @@
 # Calculating crime numbers per geographical districts by means of geo-spatial analysis
+Every year SA police reports the numbers of the 47 types of classified crimes as
+recorded at the police stations in a given year. However debatable the accuracy of the numbers,
+this is the main official source of the crime data in SA.
+
+An interactive map allowing for exploration of this data can be
+found at the Crime and Justice Hub of the Institute for Security Studies
+(ISS) site:
+https://www.issafrica.org/crimehub/map/
+
+The number of crimes at any other geographical level though, e.g. municipality or neighborhood,
+has been an unanswered question.
+This is due to the fact the geographical boundaries of the police districts are not aligned
+with the official census areas, thus to infer the crime statistics at a desired level
+ takes a bit more than basic calculus. Still, it is not impossible.
+
+ISS estimated the levels of municipal crime based on the total number of
+corresponding crime incidents recorded for each police station precinct
+with more than 50% overlap with a municipality of interest:
+ https://www.issafrica.org/crimehub/municipal/
+
+We asked ourselves whether the ISS calculations could be improved,
+and more importantly, whether we could design a way of estimating the number of crimes at
+a more granular level, e.g. a city or even suburb.
+
+In brief, we took the geographical boundaries of the police districts, for which the crime
+data is available, and the Census boundaries with the population data, overlayed the two
+and created smaller intersecting regions, for which both crime and population can be estimated.
+Such intersecting areas with all the relevant information can then be aggregated
+to form larger area units andd can be used to construct a Small Area with a particular location of interest, a neighborhood or a city. The corresponding estimates are just the sums of
+the pieces of information we used in the process. Easy.
+
+There is an underlying assumption for this idea to make sense. That is,
+we assume that the population data is evenly distributed across the census regions.
+What that means is that whatever region of SA included in the census we decide to look at, there is equal probability of people living in any part of it. Such assumption will clearly
+have less chances to hold if the area is large as the chances of it containing for example
+large uninhabited stretches of land (lake, highway) is high.
+
+Therefore, we specifically used the lowest level geo-unit for which the population data is available
+-- the Small Areas (SAL). In 2013 Census data there were 84,907 SALs, which hold between 11
+and 11,717 people count. As mentioned, all other populated areas are formed by
+aggregation. Every SAL with its a unique identifier contains a count of all people living in it, split by gender. It is those identifiers that allow us to bind the population data to a geographic area on a map. 
+
+Geographic data was released in a common geo-format, the so-called shapefile,
+developed by ESRI and describing spatial vector features. Every shapefile has spatial definition
+of its coordinate system. In order to work with both police and population
+boundaries, the data needs to be referenced with respect to a planar surface by means of projection
+that maintains the ratio of areas. We use Africa Albers Equal Area Conic (AEA) see *notes/*
+for more details on the topic.
+
+
+
+
 ### Basic stack:
  - Fiona (Python interface to OGR)
  - Shapely (analyzing and manipulating planar geometric objects)
  - Geopandas (heavy lifting of data analysis)
  - gdal command line tools
 
-The geographic information used comes primarily from the Census 2013, SA, data sets. National population data is available at various levels of granularity. Specifically, we used the 2013 Small Area Unit (SAL, 84,907 regions), a unit of area holding from 11 to 11,717 people count (see *data* folder). This is the lowest level unit and the remaining levels are formed by its aggregation (more on why that's desireable below). The population data contains a count of all people in the SAL, split by gender, which can be accessed through a unique SAL identifier. It is those identifiers that bind the SALs to the corresponding area within the Shapefiles.
-
-Crime Statistics consists of the number of 47 classified crimes as reported at each of the 1,142 police stations in a given year.
-An interactive map displaying this data at the police precinct level can be explored at the Crime and Justice Hub of the Institute for Security Studies (ISS) site:
-https://www.issafrica.org/crimehub/map/
-
-Further, ISS estimated the levels of municipal crime based on the total number of corresponding
-crime incidents recorded for each police station precinct with more than 50%
-overlap with a municipality of interest.
-
-https://www.issafrica.org/crimehub/municipal/
-
-Due to the design of the data collection process (recorded per police precinct)
-and the fact the geographical boundaries of the police districts are not aligned
-with the official census areas, it is a task beyond basic calculus to
-infer the crime statistics at a desired level, e.g. ones city or even suburb.
-Still, it is not impossible.
-
-We asked ourselves a question of whether the ISS calculations can be improved,
-and most importantly, can we find a way of estimating the number of crimes at
-a more granular level.
 
 
 
 ```sh
 $...
 ```
+## Data
+National population data is available at various levels of granularity available
+from the SA 2013 Census. The Crime Statistics and Police precincts are available from the [open data portal].
+The results sit in the *data* folder.
 
-The data will shortly be incorporated into the [Wazimap] to provide easy,
- comprehensive exploration of the data.
+## What happens next
+With the release of the 2016 re-mapped Ward boundaries (soon!), the data will be
+incorporated into the [Wazimap] for easy and dynamic exploration.
 
 
 ### Add-ons and development
@@ -48,7 +84,7 @@ License
 ...
 
 
-**Free Information, open ideas, yeah!**
+**Knowledge is power, yeah!**
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 

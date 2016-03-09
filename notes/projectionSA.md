@@ -205,16 +205,17 @@ no_defs
 Using estimators based on geographic areas requires equal area projection
 on a planar surface. Out choice is Africa Albers Equal Area Conic (AEA).
 
-Census boundaries are defined as non-Earth (?) EPSG:4148. As a matter of fact,
-the 2013 thapefiles were distributed without the projection (.prj) file, which albeit contrary
+Census boundaries are defined in EPSG:4148. As a matter of fact,
+the 2013 shapefiles were distributed without the projection (.prj) file, which albeit contrary
 to the logic behind releasing data to the public, happens surprisingly often.
-It is a safe assumption to make that the projection used in 2013 follow the 2011
+It is a safe assumption to make that the projection used in 2013 follows the 2011
 format, as well as the standards of the other data that come from the same source/data provider.
 We therefore copied the .prj file from one of the Census shapefiles of 2011 (SP=subplace).
 
+
 In principle, EPSG: 4148 is the same as EPSG:4236  (unless modified for specific purposes).
 To be on a safe side though and avoid mislabelling, we re-projected the data explicitly.
-Police Precinct shapefiles are already in EPSG:4236.
+Police precincts shapefiles are in EPSG:4236 and no further projection is needed.
 
 *Note:*
 EPSG 4326 (WGS84):  +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs
