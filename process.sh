@@ -21,3 +21,6 @@ cat header2015.txt data/crime_murd_temp.csv > data/pp_murder_2015.csv
 rm data/crime_murd_temp.csv
 
 rm header*txt
+
+# adding all types of crimes:
+ cat Police_Statistics_2015_location.csv | cut -d',' -f7 | sort -u | sed 's/17 //g' > types_crimes.txt
