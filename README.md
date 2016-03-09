@@ -69,10 +69,18 @@ The analysis has two steps:
     - summing up the populations from such the intersections included in P,
     we get the estimate we are looking for.
 
-2. Given the crime rate per person in P and the population data in all intersections calculated in 1.,
-   the expected number of crimes in a SAL is a obtained by multiplying the number of people
-   in a given intersection by the crime rate of the police precinct intersection belongs to,
-   summed over all intersections of SAL with any of the police precincts    
+2. Given the crime rate per person in P and the population data in all intersections calculated above,
+   the expected number of crimes in a SAL is obtained by summing over all its intersections with any of the police precincts and multiplying the number of people
+   in a given intersection by the crime rate of the police precinct the intersection belongs to.
+
+To sum up, overlaying the areas of SAL and police precincts results in a set of smaller
+regions, which we referred to as intersections, and for which (by making a few assumptions)
+we are able to infer number of crimes. Since such intersections make up all the other census
+boundaries, we can obtain the crime rates for areas of interest.
+
+Analogous analysis was performed using election boundaries (wards) in place of
+Small Areas. With the release of the 2016 re-mapped Ward boundaries (soon!), the data will be
+incorporated into the [Wazimap] for easy and dynamic exploration.
 
 
 ### Stack:
@@ -86,10 +94,6 @@ The analysis has two steps:
 National population data is available at various levels of granularity available
 from the SA 2013 Census. The Crime Statistics and Police precincts are available from the [open data portal].
 The results sit in the *data* folder.
-
-## What happens next
-With the release of the 2016 re-mapped Ward boundaries (soon!), the data will be
-incorporated into the [Wazimap] for easy and dynamic exploration.
 
 
 ### Add-ons and development
