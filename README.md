@@ -1,14 +1,13 @@
-# Re-mapping crime statistics 
+# Re-mapping crime statistics
 
 Every year SA police reports the numbers of the 47 types of classified crimes as
-recorded at the police stations in that given year. However debatable the accuracy of the numbers,
-it remains the main official source of the crime data in SA.
-This data can be explored e.g. at the Crime and Justice Hub of the Institute for Security Studies
+recorded at the police stations over the course of the previous year. However debatable the accuracy of the numbers, it remains the main official source of the crime data in SA.
+The data can be explored at the Crime and Justice Hub of the Institute for Security Studies
 (ISS) site:
 https://www.issafrica.org/crimehub/map/
 
-Due to the fact the geographical boundaries of the police districts are not aligned
-with any of the official census areas, assessing the corresponding number of crimes at any other geographical level, e.g. municipality or neighborhood, remained an unanswered question.
+Due to the fact that the geographical boundaries of the police districts and the official census areas
+are not aligned, the number of crimes at various geographical level, e.g. municipality or neighborhood, has remained obscure.
 
 ISS estimated the levels of municipal crime based on the total number of
 corresponding crime incidents recorded for each police station precinct
