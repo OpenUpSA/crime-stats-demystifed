@@ -1,18 +1,13 @@
 # Calculating crime numbers per geographical districts by means of geo-spatial analysis
 Every year SA police reports the numbers of the 47 types of classified crimes as
-recorded at the police stations in a given year. However debatable the accuracy of the numbers,
-this is the main official source of the crime data in SA.
-
-An interactive map allowing for exploration of this data can be
-found at the Crime and Justice Hub of the Institute for Security Studies
+recorded at the police stations in that given year. However debatable the accuracy of the numbers,
+it remains the main official source of the crime data in SA.
+This data can be explored e.g. at the Crime and Justice Hub of the Institute for Security Studies
 (ISS) site:
 https://www.issafrica.org/crimehub/map/
 
-The number of crimes at any other geographical level though, e.g. municipality or neighborhood,
-has been an unanswered question.
-This is due to the fact the geographical boundaries of the police districts are not aligned
-with the official census areas, thus to infer the crime statistics at a desired level
- takes a bit more than basic calculus. Still, it is not impossible.
+Due to the fact the geographical boundaries of the police districts are not aligned
+with any of the official census areas, assessing the corresponding number of crimes at any other geographical level, e.g. municipality or neighborhood, remained an unanswered question.
 
 ISS estimated the levels of municipal crime based on the total number of
 corresponding crime incidents recorded for each police station precinct
@@ -22,7 +17,10 @@ with more than 50% overlap with a municipality of interest:
 We asked ourselves whether the ISS calculations could be improved,
 and more importantly, whether we could design a way of estimating the number of crimes at
 a more granular level, e.g. a city or even suburb.
+As it turned out, inferring crime statistics at a desired level requires some brainstorming,
+bit of maths and coding, yet is far from impossible.
 
+How have we tackled the question?
 In brief, we took the geographical boundaries of the police districts, for which the crime
 data is available, and the Census boundaries with the population data, overlayed the two
 and created smaller intersecting regions, for which both crime and population can be estimated.
@@ -30,7 +28,7 @@ Such intersecting areas with all the relevant information can then be aggregated
 to form larger area units and can be used to construct a Small Area with a particular location of interest, a neighborhood or a city. The corresponding estimates are just the sums of
 the pieces of information we used in the process. Easy.
 
-There are a few things to keep in mind:
+There are a few things to keep in mind when working with a mix of geo-spatial and numeric data:
 - Inherent in this approach is an assumption that the population data is evenly distributed across the census regions. What that in essence means is that whatever region included in the census we decide to look at, there is an equal probability of people living in any part of it. Such assumption will clearly
 have less chances to hold if the area is large as the chances of it containing for example
 large uninhabited stretches of land (lake, highway) is high. Therefore, we specifically used the lowest level geo-unit for which the population data is available
@@ -40,9 +38,9 @@ aggregation. Every SAL with its a unique identifier contains a count of all peop
 
 - We are comparing geographic areas, calculate ratios, inclusions and slice things up,
 and for all of it to make sense we need to make sure that:
-   1. all data is in the same coordinate system, and
-   2. whatever system we work in, the ratio of different areas is maintained, as
-   if we would perform the calculations on the surface of the Earth.
+  1. all the data is in the same coordinate system, and
+  2. whatever system we work in, the ratio of different areas is maintained, as
+   if we were performing the calculations on the surface of the Earth.
 
    Geographic data was released in a common geo-format, the so-called shapefile,
 developed by ESRI and describing spatial vector features. Every shapefile has spatial definition
@@ -52,10 +50,27 @@ See *notes/* for details on the SA spatial standards and projections and *script
 was processed.
 
 
-Finally, the maths of it.
-For each police precinct,
+Hereon, we assume that the data is prepped as outlined above and we focus on a particular
+type of crime.
 
 
+For a given crime type the analysis is two-fold:
+1. First, we estimate the crime rate per person for each of the police precincts.
+   As an example, let us choose a precinct P (the analysis is preformed for all).
+   The rate estimate becomes: number of crimes in P/number of people in P.
+   Thus, in order to calculate the rate, we need an estimate of the total population in P.
+   This can be inferred as a sum of people from all intersections of P with SALs,
+    which is achieved as follows:
+   - find the SALs that intersect P with it by area > 0 (no border cases)
+   - for each of the intersecting SALs we calculate the fraction of intersection
+     and number of people that fall in the intersection based how much of the total
+     SAL area is included within P. For example, if a given SAL with 100 people living
+     in it intersects P with in 50%, the population of the intersection would be 0.5*100 = 50
+    - summing up the populations from the intersections of P, we get the estimate we are after.
+2. Given the crime rate per person in P and the population data in all intersections,
+   the expected number of crimes in a SAL is a calculated by multiplying the number of people
+   in a given intersection by the rate of P the intersection is contained in,
+   summed over all intersections of SAL with any of the police precincts    
 
 
 ### Stack:
