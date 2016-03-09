@@ -1,4 +1,5 @@
-# Calculating crime numbers per geographical districts by means of geo-spatial analysis
+# Re-mapping crime statistics 
+
 Every year SA police reports the numbers of the 47 types of classified crimes as
 recorded at the police stations in that given year. However debatable the accuracy of the numbers,
 it remains the main official source of the crime data in SA.
@@ -92,7 +93,7 @@ are available from the [open data portal] and in the *data* folder.
 
 ### Add-ons and development
 
-Want to contribute? Have an idea for improvement? Great!
+Want to contribute? Have an idea for alternative applications or extensions? Great!
 Get in touch.
 
 License
