@@ -29,9 +29,7 @@ to form larger area units and can be used to construct a Small Area with a parti
 the pieces of information we used in the process. Easy.
 
 There are a few things to keep in mind when working with a mix of geo-spatial and numeric data:
-- Inherent in this approach is an assumption that the population data is evenly distributed across the census regions. What that in essence means is that whatever region included in the census we decide to look at, there is an equal probability of people living in any part of it. Such assumption will clearly
-have less chances to hold if the area is large as the chances of it containing for example
-large uninhabited stretches of land (lake, highway) is high. Therefore, we specifically used the lowest level geo-unit for which the population data is available
+- Inherent in this approach is an assumption that the population data is evenly distributed across the census regions. What that in essence means is that whatever region included in the census we decide to look at, there is an equal probability of people living in any part of it. Obviously, the larger the region, the less accurate such an assumption becomes as large areas can contain uninhabited stretches of land (lake, highway). Therefore, we specifically used the lowest level geo-unit for which the population data is available
 -- the Small Areas (SAL). In 2013 Census data there were 84,907 SALs, which hold between 11
 and 11,717 people count. As mentioned, all other populated areas are formed by
 aggregation. Every SAL with its a unique identifier contains a count of all people living in it, split by gender. It is those identifiers that allow us to bind the population data to a geographic area on a map.
