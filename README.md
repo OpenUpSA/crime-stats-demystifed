@@ -14,19 +14,16 @@ corresponding crime incidents recorded for each police station precinct
 with more than 50% overlap with a municipality of interest:
  https://www.issafrica.org/crimehub/municipal/
 
-We asked ourselves whether the ISS calculations could be improved,
+We asked a question of whether the ISS calculations could be improved,
 and more importantly, whether we could design a way of estimating the number of crimes at
 a more granular level, e.g. a city or even suburb.
-As it turned out, inferring crime statistics at a desired level requires some brainstorming,
-bit of maths and coding, yet is far from impossible.
+As it turned out, inferring crime statistics at a desired level is very much possible
+with a bit of maths and some coding.
 
-How have we tackled the question?
-In brief, we took the geographical boundaries of the police districts, for which the crime
-data is available, and the Census boundaries with the population data, overlayed the two
-and created smaller intersecting regions, for which both crime and population can be estimated.
-Such intersecting areas with all the relevant information can then be aggregated
-to form larger area units and can be used to construct a Small Area with a particular location of interest, a neighborhood or a city. The corresponding estimates are just the sums of
-the pieces of information we used in the process. Easy.
+How have we approached the question? In brief, we took the geographical boundaries of the police districts, for which the crime data is available, and the census boundaries with the population data, overlayed the two geo-files and created smaller intersecting regions, for which both crime and population can be estimated.
+Such intersected areas containing the relevant information can then be aggregated
+to form larger area units and used to construct e.g. a Small Area or Suburb (subplace) with a particular location of interest or a city. The corresponding estimates are just the sums of
+the pieces of information we used in the process. Visually intuitive process.
 
 There are a few things to keep in mind when working with a mix of geo-spatial and numeric data:
 - Inherent in this approach is an assumption that the population data is evenly distributed across the census regions. What that in essence means is that whatever region included in the census we decide to look at, there is an equal probability of people living in any part of it. Obviously, the larger the region, the less accurate such an assumption becomes as large areas can contain uninhabited stretches of land (lake, highway). Therefore, we specifically used the lowest level geo-unit for which the population data is available
@@ -56,7 +53,7 @@ The analysis has two steps:
 
 1. First, we estimate the crime rate per person for each of the police precincts.
    To illustrate the line of thought, let us focus on a precinct P (the analysis is preformed for all simultaneously). We need an estimate of its total population, which can be inferred as a sum of
-   population from all the intersections of P with SALs:
+   population from all the intersections of P with SALs as follows:
 
    - find the SALs that intersect P with intersection area > 0 (no border cases)
    - for each of the intersecting SALs calculate the number of people that fall in the intersection based on the fraction of SAL's area included in P. For example, if a given SAL with 100 people living
@@ -65,7 +62,7 @@ The analysis has two steps:
     - calculate the estimate of the rate: (number of crimes in P)/(number of people in P).
 
 
-2. Given the crime rate per person in P and the population data in all intersections calculated above,
+2. Given the crime rate per person in P and the population data from its intersections with SALs,
    the expected number of crimes in a SAL is obtained by summing over all its partial intersections with any of the police precincts and multiplying the number of people
    in a given intersection by the crime rate of the police precinct the intersection belongs to.
 
