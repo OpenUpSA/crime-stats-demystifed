@@ -38,8 +38,8 @@ aggregation. Every SAL with its a unique identifier contains a count of all peop
 
 - We are comparing geographic areas, calculate ratios, inclusions and slice things up,
 and for all of it to make sense we need to make sure that:
-  1. all the data is in the same coordinate system, and
-  2. whatever system we work in, the ratio of different areas is maintained, as
+  - all the data is in the same coordinate system, and
+  - whatever system we work in, the ratio of different areas is maintained, as
    if we were performing the calculations on the surface of the Earth.
 
    Geographic data was released in a common geo-format, the so-called shapefile,
@@ -60,18 +60,18 @@ The analysis has two steps:
    As an example, let us choose a precinct P (the analysis is preformed for all).
    The rate estimate becomes: number of crimes in P/number of people in P.
    Thus, in order to calculate the rate, we need an estimate of the total population in P.
-   This can be inferred as a sum of people from all intersections of P with SALs,
-    which is achieved as follows:
-   - find the SALs that intersect P with it by area > 0 (no border cases)
-   - for each of the intersecting SALs we calculate the fraction of intersection
-     and number of people that fall in the intersection based how much of the total
-     SAL area is included within P. For example, if a given SAL with 100 people living
-     in it intersects P with in 50%, the population of the intersection would be 0.5*100 = 50
-    - summing up the populations from the intersections of P, we get the estimate we are after.
-    
-2. Given the crime rate per person in P and the population data in all intersections,
-   the expected number of crimes in a SAL is a calculated by multiplying the number of people
-   in a given intersection by the rate of P the intersection is contained in,
+
+   This can be inferred as a sum of people from all intersections of P with SALs:
+
+   - find the SALs that intersect P with intersection area > 0 (no border cases)
+   - for each of the intersecting SALs we calculate the number of people that fall in the intersection based on the fraction of SAL's area included in P. For example, if a given SAL with 100 people living
+     in it intersects P in 50%, the population of the intersection would be 0.5*100 = 50
+    - summing up the populations from such the intersections included in P,
+    we get the estimate we are looking for.
+
+2. Given the crime rate per person in P and the population data in all intersections calculated in 1.,
+   the expected number of crimes in a SAL is a obtained by multiplying the number of people
+   in a given intersection by the crime rate of the police precinct intersection belongs to,
    summed over all intersections of SAL with any of the police precincts    
 
 
@@ -82,11 +82,6 @@ The analysis has two steps:
  - gdal command line tools
  - pen and paper
 
-
-
-```sh
-$...
-```
 ### Data
 National population data is available at various levels of granularity available
 from the SA 2013 Census. The Crime Statistics and Police precincts are available from the [open data portal].
