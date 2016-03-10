@@ -98,7 +98,7 @@ Get in touch.
 License
 ----
 
-...
+MIT license 
 
 
 **Knowledge is power!**
