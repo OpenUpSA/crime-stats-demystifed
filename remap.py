@@ -1,32 +1,36 @@
 import csv
 from collections import defaultdict
 
-headers = "ward_code,Urban_area,Tribal_are,Farm_area,Black_Afri,Coloured,Asian,White,Other_Race,Afrikaans,English,IsiNdebele,IsiXhosa,IsiZulu,Sepedi,Sesotho,Setswana,Sign_Lang,SiSwati,Tshivenda,Xitsonga,Other_Lang,Unspec_Lan,NA_Lang,Primary,Secondary,NTC,Cert_Dip,Tertiary,No_schooli,Other_Edu,A0_9,A10_19,A20_29,A30_39,A40_49,A50_59,A60_69,A70_79,A80Plus".split(",")
+weight_reader = csv.DictReader(open("sal_to_precinct_weights.csv"))
+data_reader = csv.DictReader(open("data/sal_population.csv"))
 
-weight_reader = csv.DictReader(open("output_remap.csv"))
-data_reader = csv.DictReader(open("SAL_Nat_Popn_region-trimmed.csv"))
+SOURCE_KEY = "small_area"
+TARGET_KEY = "precinct"
 
-data = {}
+source_data = {}
 for row in data_reader:
-    sal_code = row["SAL_Code_I"]
-    data[sal_code] = row
+    sal_code = row["small_area"]
+    source_data[sal_code] = row
 
-ward_data = defaultdict(lambda: defaultdict(int))
+headers = source_data.values()[0].keys()
+headers.remove(SOURCE_KEY)
+
+final_data = defaultdict(lambda: defaultdict(int))
 for row in weight_reader:
-    ward = row["ward_code"]
-    sal = row["sal_code"]
-    ward_variables = ward_data[ward]
-    ward_variables["ward_code"] = ward
+    target_code = row[TARGET_KEY]
+    source_code = row[SOURCE_KEY]
+    row_data = final_data[target_code]
+    row_data[TARGET_KEY] = target_code
 
-    for variable in headers[1:]:
-        sal_data = int(data[sal][variable])  # e.g. Black Africans
+    for variable in headers:
+        sal_data = int(source_data[source_code][variable])  # e.g. Black Africans
         sal_weight = float(row["weight"])  # e.g. 0.5
         data_allocation = sal_data * sal_weight  # e.g 50% of 100 Black Africans = 50
 
-        ward_variables[variable] += data_allocation
+        row_data[variable] += data_allocation
 
 with open("remapped_data.csv", "w") as fp:
-    writer = csv.DictWriter(fp, headers)
+    writer = csv.DictWriter(fp, final_data.values()[0].keys())
     writer.writeheader()
-    for value in ward_data.values():
+    for value in final_data.values():
         writer.writerow(value)
